@@ -1,0 +1,45 @@
+*
+.lib 10p
+.param tstep_soac=10p
+.endl 10p
+*
+.lib 100p
+.param tstep_soac=100p
+.endl 100p
+*
+.lib 1n
+.param tstep_soac=1n
+.endl 1n
+*
+.lib 10n
+.param tstep_soac=10n
+.endl 10n
+*
+.lib 100n
+.param tstep_soac=100n
+.endl 100n
+*
+.lib 1u
+.param tstep_soac=1u
+.endl 1u
+*
+.lib 10u
+.param tstep_soac=10u
+.endl 10u
+*
+.lib 100u
+.param tstep_soac=100u
+.endl 100u
+*
+.lib 1m
+.param tstep_soac=1m
+.endl 1m
+*
+.lib 10m
+.param tstep_soac=10m
+.endl 10m
+*
+.lib 100m
+.param tstep_soac=100m
+.endl 100m
+*

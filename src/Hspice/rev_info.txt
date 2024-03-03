@@ -1,0 +1,1013 @@
+**************************************************************************
+***   Company Confidential                                             ***
+***   X-FAB Global Services GmbH                                       ***
+***   email: hotline@xfab.com                                          ***
+***   phone: +49-361-427-6663                                          ***
+***   fax:   +49-361-427-6631                                          ***
+**************************************************************************
+
+***   Process Family: xt018
+***   Description   : Spice model library for hspice circuit simulator
+
+
+2023-07-07, v12_1_3
+===================
+
+   ## changes
+   - corrected operating conditions models of pmvaa, pmvab, dzati & dzcti to align with specification
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2023-07-07, v12_1_2
+===================
+
+   ## changes
+   - corrected drain bulk diode used in pmvaa
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2023-06-23, v12_1_1
+===================
+
+   ## changes
+   - updated matching model of csf2p & csf3p
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2022-12-21, v12_0_1
+===================
+
+   ## changes
+   - added cif3a, cif4a, cif5a, cift4a, cift5a & cift6a
+   - updated peti, ne5, pe5, pe5_5, pe5ti
+   - updated nmvaa + dfwdnaa, nmvab + dfwdnab, pmvaa + dfwdpaa & pmvab + dfwdpab
+   - updated IGBT nisj1_16
+   - updated nhsj1a_13, nhsj1a_16, nhsj1a_20, nhsj1a_28, nhsj1b_10, nhsj1b_2, nhsj1b_4,
+     nhsj1b_5, nhsj1b_7 & nhsj1b_8 and added matching
+   - updated phsj1a_4, phsj1a_5, phsj1a_7, phsj1a_8, phsj1a_10, phsj1a_13, phsj1a_16,
+     phsj1a_20, phsj1a_31, phsj2b_16 and added matching
+   
+   - updated dnp7, ds5a, ds5b, dzcti, dfwnsj1a_20 & dfwnsj1a_28
+   - corrected operating conditions VD-HW for phvra, phvrb, phvrc, phvrd, phvre & phvrf
+   - changed 2-terminal csp5tl to 3-terminal csp5tl_3 & 2-terminal csp5tla to 3-terminal csp5tla_3
+   - introduced Pmax operating conditions for qnvha & qpvha
+   - added operating condition models (caps) oc_* for usage in schematic PCELLS of AUXLIB
+   - fixed issue of temperature dependence for VSAT in pesvt & pesvt_5
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2022-03-04, v11_2_1
+===================
+
+   ## changes
+   - extended operating conditions of the terminal to bulk voltage for all MIM capacitors
+     cmm3, cmm4, cmm5, cmm3t, cmm4t, cmm5t, cmm6t, cdmm4, cdmm5, cdmm4t, cdmm5t, ctmm5,
+     ctmm5t, cmmh3, cmmh4, cmmh5, cmmh3t, cmmh4t, cmmh5t, cmmh6t, cdmmh4, cdmmh5, cdmmh4t,
+     cdmmh5t, ctmmh5, ctmmh5t, cmmh4l, cmmh5l, cmmh6l
+   
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2022-02-11, v11_1_3
+===================
+
+   ## changes
+   - corrected OCC models in terms of current related checks for dfwdn5, dfwdnb, dfwdnc, dfwdnd,
+     dfwdne, dfwdnf, dfwdnha, dfwdnhb, dfwdnhc, dfwdnhd, dfwdnhe, dfwdnhf, dfwdnt, dfwdnu,
+     dfwdpa, dfwdpb, dfwdpd, dfwdpe, dfwdpf, dfwdpha, dfwdphb, dfwdphc, dfwdphd, dfwdphe,
+     dfwdphf, dnp7, dnpa, dnpati, dpp6, dpp7, dza, dzati, dzbti, dzcti, rm1, rm2, rm3,
+     rm4, rm5, rmrdl, rmtp, rmtpl, rnp1, rnp1_3, rnp1h, rnp1h_3, rpp1, rpp1_3, rpp1k1,
+     rpp1k1_3, rpp1k1a, rpp1k1a_3, rpp1s, rpp1s_3
+     Dilemma:
+     --> corrects monitored values of current checks with Verilog-A & Eldo (.setsoa) syntax
+     --> causes wrong monitored values for m>1 of current checks with Spectre (assert)
+         & HSPICE (.biaschk) syntax (see remaining Known Issue 2.)
+   
+   
+   ## Known Issues
+     1. In SOI processes, devices can exist in individual tubs which are isolated
+        from each other. These tubs can have very different potentials, which may
+        float up by several hundreds of volts with respect to global simulator
+        ground (gnd!).
+        Since some Operating Condition Check (OCC) & SOA models are limited in the
+        number of terminals, it's not always possible to check terminal voltages
+        against their individual bulk (e.g. csf3). In order to avoid ignoring the
+        according conditions during OCC/SOA simulation at all, the check is done
+        against global simulator GND, which is most conservative but can lead to
+        pseudo violations which need to be waived by the designer in case.
+     2. wrong (too conservative) current-related OCC results for Spectre (assert)
+        & HSPICE (.biaschk) syntax in forward protection & Zener diodes and resistors
+        when using mFactor>1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2022-01-31, v11_1_2
+===================
+
+   ## changes
+     - add model of dnw5mvaa
+     - re-center ndhvt, ndhvta, phvta, dzcti
+     - add Monte-Carlo-Mismtch to nmvaa, pmvaa 
+     - add aging models for ne, ne5, pe, pe_5, peti, pe5, pe5_5, pe5ti
+     - update noise parameters of nhvta, nhvu, phvtb, phvu
+   
+   ## Known Issues
+     - In SOI processes, devices can exist in individual tubs which are isolated
+       from each other. These tubs can have very different potentials, which may
+       float up by several hundreds of volts with respect to global simulator
+       ground (gnd!).
+       Since some Operating Condition Check (OCC) & SOA models are limited in the
+       number of terminals, it's not always possible to check terminal voltages
+       against their individual bulk (e.g. csf3). In order to avoid ignoring the
+       according conditions during OCC/SOA simulation at all, the check is done
+       against global simulator GND, which is most conservative but can lead to
+       pseudo violations which need to be waived by the designer in case.
+     - wrong (too conservative) current-related OCC results for Verilog-A & Eldo syntax
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2022-01-21, v11_1_1
+===================
+
+   ## changes
+     - add models for nmvaa, pmvaa
+     - remove models of superseeded devices nmva, pmva
+     - updated dzati to extend forward operation
+     - re-centering of phvtb, phvu, 
+       nhsj1_7, nhsj1_10, nhsj1_16c, phsj1_7, phsj1_10, phsj1_16c
+     - updated pelgrom coefficient of rpp1 from 1.5%um to 1.7%um
+     - update pelgrom coefficients of cif*, cift*, csf3a, csf4a, csft4a csft5a, csft6a, 
+       csft* according to spec.
+     - corrected OCC models in terms of current checks for dfwdn5, dfwdnb, dfwdnc, dfwdnd,
+       dfwdne, dfwdnf, dfwdnha, dfwdnhb, dfwdnhc, dfwdnhd, dfwdnhe, dfwdnhf, dfwdnt, dfwdnu,
+       dfwdpa, dfwdpb, dfwdpd, dfwdpe, dfwdpf, dfwdpha, dfwdphb, dfwdphc, dfwdphd, dfwdphe,
+       dfwdphf, dnp7, dnpa, dnpati, dpp6, dpp7, dza, dzati, dzbti, dzcti, rm1, rm2, rm3,
+       rm4, rm5, rmrdl, rmtp, rmtpl, rnp1, rnp1_3, rnp1h, rnp1h_3, rpp1, rpp1_3, rpp1k1,
+       rpp1k1_3, rpp1k1a, rpp1k1a_3, rpp1s, rpp1s_3
+   
+   
+   ## Known Issues
+     - In SOI processes, devices can exist in individual tubs which are isolated
+       from each other. These tubs can have very different potentials, which may
+       float up by several hundreds of volts with respect to global simulator
+       ground (gnd!).
+       Since some Operating Condition Check (OCC) & SOA models are limited in the
+       number of terminals, it's not always possible to check terminal voltages
+       against their individual bulk (e.g. csf3). In order to avoid ignoring the
+       according conditions during OCC/SOA simulation at all, the check is done
+       against global simulator GND, which is most conservative but can lead to
+       pseudo violations which need to be waived by the designer in case.
+     - wrong (too conservative) current-related OCC results for Verilog-A & Eldo syntax
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE -- R-2020.12 linux64 (Nov 23 2020)"
+
+
+
+2021-10-08, v11_0_1
+===================
+
+   ## changes
+   ## Release Notes
+     - added dfwnsj1b_2, dfwnsj1b_4, dfwnsj1b_5, dfwnsj1b_7, dfwnsj1b_8 & dfwnsj1b_10, dfwnsj1a_13, dfwnsj1a_16, dfwnsj1a_20, dfwnsj1a_28
+     - added dfwpsj1a_4, dfwpsj1a_5, dfwpsj1a_7, dfwpsj1a_8, dfwpsj1a_10, dfwpsj1a_13, dfwpsj1a_16, dfwpsj1a_20, dfwpsj1a_31
+     - added dfwpsj2b_7, dfwpsj2b_8, dfwpsj2b_10, dfwpsj2b_13, dfwpsj2b_16
+     - added dhw2b, dhw2c, dhw3c, dhw4c, dhw4d & dhw5d 
+     - added nhsj1b_2, nhsj1b_4, nhsj1b_5, nhsj1b_8, nhsj1b_10, nhsj1a_13, nhsj1a_16, nhsj1a_20 & nhsj1a_28
+     - added phsj1a_4, phsj1a_5, phsj1a_7, phsj1a_8, phsj1a_10, phsj1a_13, phsj1a_16, phsj1a_20 & phsj1a_31
+     - added phsj2b_7, phsj2b_8, phsj2b_10, phsj2b_13 & phsj2b_16
+     - added csp5tl & csp5tla
+     - added tag_300, tag_400, tag_m300 & tag_m400
+     - updated BV limits for dnpa & dnpati
+     - updated ndmvd, ndmvf, nmvb, nmvc, nmvd, nmve, nmvf, pmvb, pmvd, pmve & pmvf
+     - updated nhvta, nhvtaa, nhvtb & nhvu
+     - removed pmvc & dfwdpc
+   
+   ## Known Issues
+     - In SOI processes, devices can exist in individual tubs which are isolated
+       from each other. These tubs can have very different potentials, which may
+       float up by several hundreds of volts with respect to global simulator
+       ground (gnd!).
+       Since some Operating Condition Check (OCC) & SOA models are limited in the
+       number of terminals, it's not always possible to check terminal voltages
+       against their individual bulk (e.g. csf3). In order to avoid ignoring the
+       according conditions during OCC/SOA simulation at all, the check is done
+       against global simulator GND, which is most conservative but can lead to
+       pseudo violations which need to be waived by the designer in case.
+   
+       
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2021-06-30, v10_0_4
+===================
+
+   ## changes
+   ## Release Notes
+     - added elements for PNAwareRC Substrate Extractor
+     - improved handling of tox components for nn, nn5, nel & pel
+     - improved nel & pel to get rid of warnings
+     - corrected values of SPICE level1 (__bsim4_diomod=0) leakage parameters for pe5, pe5_5 & pe5ti
+       --> now values are taken from dp5 instead of dp
+   
+   ## Known Issues
+     - In SOI processes, devices can exist in individual tubs which are isolated
+       from each other. These tubs can have very different potentials, which may
+       float up by several hundreds of volts with respect to global simulator
+       ground (gnd!).
+       Since some Operating Condition Check (OCC) & SOA models are limited in the
+       number of terminals, it's not always possible to check terminal voltages
+       against their individual bulk (e.g. csf3). In order to avoid ignoring the
+       according conditions during OCC/SOA simulation at all, the check is done
+       against global simulator GND, which is most conservative but can lead to
+       pseudo violations which need to be waived by the designer in case.
+   
+       
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2021-05-12, v10_0_3
+===================
+
+   ## changes
+   ## Release Notes
+     - re-fitted nel & pel to measurements for certain geometries
+     - updated mismatch for csf3, csf4, csf5, cif3, cif4, cif5, rnp1 & rnp1h
+     - fine-tuned temperatur coefficient of mosvc5ti
+     - fine-tuned temperatur coefficient of VTX for nhvtb
+     - fine-tuned temperatur coefficient of VTI for nd5 & ndhvtb
+     - fixed Mfactor issue in SOA variant of OCC check (spectreSoa, hspiceSoa & eldoSoa)
+       with Drain/Bulk diodes in HVMOS
+     - fixed bug in mismatch model of nhvtb & phvtb
+     - fixed drain perimeter calculation for nmva & pmva
+   
+   ## Known Issues
+     - In SOI processes, devices can exist in individual tubs which are isolated
+       from each other. These tubs can have very different potentials, which may
+       float up by several hundreds of volts with respect to global simulator
+       ground (gnd!).
+       Since some Operating Condition Check (OCC) & SOA models are limited in the
+       number of terminals, it's not always possible to check terminal voltages
+       against their individual bulk (e.g. csf3). In order to avoid ignoring the
+       according conditions during OCC/SOA simulation at all, the check is done
+       against global simulator GND, which is most conservative but can lead to
+       pseudo violations which need to be waived by the designer in case.
+   
+       
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2020-09-30, v10_0_2
+===================
+
+   ## changes
+   ## Release Notes
+     - long channel vtx fixed for phvra, phvrb, phvrc, phvrd, phvre & phvrf
+     - Monte Carlo mismatch modeled for ndhvrd, nhvrc, nhvrd, nhvre, nmvb,
+       nmvc, nmvd, nmve, nmvf, phvrc, phvrd, phvre, pmvb, pmvc, pmvd,
+       nhsj1_7, nhsj1_10, nhsj1_16c, phsj1_7, phsj1_10, phsj1_16c,
+       nhvta, nhvtaa, phvta, nhvtb, phvtb, nhvu, phvu, nmva, pmva
+     - Monte Carlo mismatch inherited for nhvra, phvra, nhvrb, phvrb, nhvrf, phvrf,
+       ndhvrf, pmve & pmvf from its pendent of the nearest voltage class repectively
+     - zero variance variables replaced by fixed values for nd5, ndhvt & ndhvta
+       to avoid Spectre warnings at Monte Carlo simulation
+     - HiSIM_HV version upgraded from 2.1 to 2.4 for nhvta, nhvtaa, nhvtb,
+       nhvu, phvta, phvtb & phvu in order to improve convergence
+     - dzcti updated (extracted based on actual layout)
+     - bug fixed all SOA/OCC checks which observe current densities
+      (now consider also multiplier and number of fingers)
+     - current leakage (@VD=10V) increased for nmva (WP corner)
+     - operating condition VB-HW of phvta, phvtb & phvu corrected
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2020-05-11, v10_0_1
+===================
+
+   ## changes
+   ## Release Notes
+     - current conditions check introduced for rpp1s OCC model
+     - parasitic box capacity added to nmv{b-f}, pmv{b-f}, ndmv{d,f}, nhvr{a-f} & phvr{a-f}
+     - {n,p}hvta, {n,p}hvtb, {n,p}hvu, {n,p}mva re-centered
+     - rnw, rnw5, rxw2ti & rnp1h updated in accordance to the PDS
+     - matching updated for rdp5 & rnp1
+     - matching added for ndmv{d,f}
+     - ne, pe, peti & pe5ti updated in accordance to PDS
+     - nn fit to measurments improved based on multiple geometries
+     - nel, pel, ne5 & pe5 corner fit improved
+     - nesvt & pesvt added
+     - nn5 & nd5 updated in accordance to PDS
+     - nhvtaa & ndhvtaa added
+     - nhsj1_{7,10,16c} & phsj1_{7,10,16c} updated in accordance to PDS
+     - ndhvt, ndhvta, ndhvrd & ndhvrf updated in accordance to PDS
+     - qnvha & qpvha added
+     - dzcti added (copied from dzbti & transformed to 2-terminals)
+     - ds5b added
+     - BV of dnp7 updated in accordance to PDS
+     - temperature dependency of BV corrected for dpp6 & dpp7
+     - VDF of dfwdn{5,t,u} updated in accordance to the PDS & corrected its corner variation
+     - VDF corner variation corrected for dfwdnsj1_{7,10,16c}, dfwdpt{a,b} & dfwdpu
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2020-01-28, v9_0_1
+==================
+
+   ## changes
+   ## Release Notes
+     - BDS reduced for phvrd (dfwdphd) & phvre (dfwdphe) in accordance to PDS
+     - cift4, cift5 & cift6 added
+     - dfwdn{b,c,d,e,f} added
+     - nmvb, nmvc, nmvd, nmve, nmvf, ndmvd, ndmvf added
+     - pmve updated in accordance to PDS
+     - dfwdnhf updated
+     - OCC models revised & updated in accordance tp PDS
+     - current conditions check initially introduced in OCC models
+       for most diodes (HVMOS), poly & metal resistors
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2019-09-06, v8_1_1
+==================
+
+   ## changes
+   ## Release Notes
+     - config file corrected for MOS5 core module (missing parameter __nn_accuracy added)
+     - BV of dfwdnhf & dfwdphv updated from 144V to 133V in accordance to PDS
+     - AbsMax/Min of dfwdnhf, dfwdphv, nhvrf, phvrf & ndhvrf OCC models updated
+       from 138V to 127V in accordance to PDS
+     - RON variation updated for ndhvrd & ndhvrf
+     - OCC models of phvrd & phvre corrected
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2019-07-12, v8_0_2
+==================
+
+   ## changes
+   ## Release Notes
+     - nn & nn5 updated for short-channel leakage
+       flag __nn_accuracy introduced in config.{lib,scs} to switch levels of accuracy vs. convergence
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2019-06-28, v8_0_1
+==================
+
+   ## changes
+   ## Release Notes
+     - cif3, cif4 & cif5 added
+     - nhvr{a,b,c,d,e,f} & phvr{a,b,c,d,e,f} added/updated
+     - ndhvrd & ndhvrf updated
+     - pmv{b,c,d,e,f} added
+     - dfwdnh{a,b,c,d,e,f} added
+     - ds5a updated modeling of current hump at forward voltage >1V and fixed Monte Carlo
+     - rnp1h* updated (RSH & DW) in accordance to PDS
+     - nn & nn5 updated for short-channel sub-Vth region
+     - noise model updated for rxw2ti
+     - Monte Carlo model improved for dnp7, dpp6, dpp7
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE P-2019.06 linux64 (May 26 2019)"
+
+
+
+2018-11-13, v7_0_4
+==================
+
+   ## changes
+   ## Release Notes
+     - Leakage modeling of nmva improved
+     - Threshold voltage modeling of phvtb improved
+     - Convergence of nhsj1_* & phsj1_* improved
+       --> requires latest simulator versions (see model header)
+   
+   ## Known Issues
+     - Eldo 2018.3 does not yet support selfheating with HiSIM_HV 2.4
+       currents of nhsj1_* & phsj1_* only plausible for very short pulse widths
+     - dnp7, dpp6, dpp7, ds5a need to be revised:
+       Monte Carlo simulation of process parameter values may exceed their limits
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE O-2018.09-1 linux64 (Sep 27 2018)"
+
+
+
+2018-10-15, v7_0_3
+==================
+
+   ## changes
+   ## Release Notes
+     - cmm3, cmm5, cmmh3, cmmh4, cmmh5, cdmm5, cdmm5t, cdmmh5, cdmmh5t finally added
+     - Monte Carlo bug of following JUNCAP2 diodes fixed
+       dn (ne), dp (pe, pe_5, peti), dnw, dnn (nn), dnl (nel),dpl (pel), dnpa,
+       dn5 (ne5), dp5 (pe5, pe5_5, pe5ti), dnn5 (nn5), dnw5, dza (dzati), dzbti,
+       dhw2, dhw2a, dhw3, dfwdn5, dfwdnt, dfwdnu, dfwdpta, dfwdptb, dfwdpa, dfwdpu,
+       dfwnsj1_10, dfwnsj1_16c, dfwnsj1_7, dfwpsj1_10, dfwpsj1_16c, dfwpsj1_7
+     - Monte Carlo modeling for MOS devices improved
+   
+   ## Known Issues
+     - nhsj1_*, phsj1_*:
+       poor convergence behavior under certain transient simulation conditions
+     - dnp7, dpp6, dpp7, ds5a:
+       Monte Carlo simulation of process parameter values may exceed their limits
+     - nmva, phvtb: width scaling issues
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2018-08-27, v7_0_2_C2_1
+=======================
+
+   ## changes
+     - nhsj1_{7,10,16c} & phsj1_{10,16c} convergence improvement
+       --> required simulator version: Spectre 17.1.0.238.isr4
+       --> convergence aiding options for critical cases:
+           cmin=1fF
+           integration method: Gear2
+           et al.
+     To Do (next steps - planned for September):
+     - phsj1_7 to be updated in a similar way
+     - final quality assurance checks for all 6 updated  SJ HVMOS models
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2018-07-19, v7_0_2
+==================
+
+   ## changes
+     - dnn & dnn5 added
+     - junc. cap. par. of nn synced with dnn
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2018-07-13, v7_0_1
+==================
+
+   ## changes
+     - temperature coefficients of csf2p & csf3p correct
+     - ds5a added
+     - nhsj1_16c updated
+     - nd5 model fit & matching fit updated
+     - BOX cap to nhvta, ndhvta, nhvtb, ndhvt, nhvu, phvta, phvtb & phvu added
+     - tag_* virtual devices added
+     - nel & pel updated to meet larger statistical uncertainty
+       due to increased min. channel length
+     - noise fit for ne corrected
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2017-11-07, v6_0_3
+==================
+
+   ## changes
+     - Ron bug in nhvu & nisj1_16 fixed
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2017-10-15, v6_0_2
+==================
+
+   ## changes
+     - changed leakage corner model of ds5 to cover significant higher measured values
+     - updated nmva and pmva flicker noise model
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2017-07-31, v6_0_1
+==================
+
+   ## changes
+     - overlap cap for baseline MOS for MC updated
+     - models updated in accordance to the PDS (BEOL 2.0)
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2017-06-30, v5_0_6_A_1
+======================
+
+   ## changes
+     - added preliminary models for nmvd, pmvd, nhvre & phvre
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE M-2017.03 linux64 (Feb 20 2017)"
+
+
+
+2017-04-11, v5_0_6
+==================
+
+   ## changes
+     - corrected corner leakage of ne & pe for small geometries
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.06-1 linux64 (Jun 27 2016)"
+
+
+
+2017-02-15, v5_0_5
+==================
+
+   ## changes
+     - updated rsil* TC1/2 
+     - copied matching values for qpv{e,f,g,e5,f5,g5} from qpv{a,b,c,a5,b5,c5}
+     - updated dza & dzati
+     - updated ne (improved leakage model)
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.06-1 linux64 (Jun 27 2016)"
+
+
+
+2017-01-18, v5_0_4
+==================
+
+   ## changes
+     - corrected mosvc5ti occ model
+     - updated rsil* & rsb* in accordance to PDS
+     - updated ne, pe, pe_5 & peti
+     - corrected dw of ne5 & pe5 
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.06-1 linux64 (Jun 27 2016)"
+
+
+
+2016-11-01, v5_0_3
+==================
+
+   ## changes
+     - corrected flag parameter name __bsim4_diomod in config.{lib,scs} of MOS5, which caused sim. error
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.06-1 linux64 (Jun 27 2016)"
+
+
+
+2016-10-14, v5_0_2
+==================
+
+   ## changes
+     - corrected double-defined skew parameter rdn_dw to rdn5_dw in rdn5
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.03 linux64 (Feb 24 2016)"
+
+
+
+2016-09-30, v5_0_1
+==================
+
+   ## changes
+     - add configuration file for control-flags which affects the whole library
+       - this config file has to be included in the simulation netlist
+       - At the moment an option to switch between Level1 Diode and Juncap2 for junction diodes  
+         in bsim4 models is supported.
+     - updated ne, pe, pe_5, peti, ne5, pe5 & nn5 in accordance to the PDS
+     - updated nmva & pmva in accordance to the PDS
+     - corrected bv of parasitic diode in pmva 
+     - updated ndhvt, nhsj1_{7,10,16c}, phsj1_{7,10,16c} & nisj1_16 in accordance to the PDS
+     - added estimated mismatch to nd5
+     - corrected tc of rpp1k1* & rpp1s
+     - updated RSH & dW of all resistors in accordance to the PDS
+     - introduced corner TCs for resistors
+     - updated TCs of rnp1h in accordance to the PDS
+     - added high/low TCs of rpp1, rnp1, rnph, rpp1s, rd{n,n5}, rd{p,p5}, rn{w,w5}, rxw2ti
+     - added mosvc, mosvcti, mosvc5 & mosvc5ti
+     - updated dfwdn5, dfwdnt, dfwdnu, dfwnsj1_7, dfwnsj1_10 & dfwnsj1_16c
+       (used new DIODE_CMC model type with included reverse recovery)
+     - updated Drain/Bulk diodes for phvta, phvtb & phvu
+       (used new DIODE_CMC model type with included reverse recovery)
+     - updated ds5, dnpa, dnpati, dzbti, dnp7 & dpp6
+     - updated qpv{a,b,c,e,f,g}, qpv{a,b,c,e,f,g}5, qnv5 & qpv5
+     - updated csandwt{3,4,5} in accordance to the PDS
+     - new operating conditions csf{3,4,5} and csft{4,5,6}
+     - updated pfuse in accordance to the PDS
+     - inherited dza from dzati (measurements show equal characteristics)
+     - added express parameter to all DIODE_CMC & JUNCAP2 diode models
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"L-2016.03 linux64 (Feb 24 2016)"
+
+
+
+2016-04-05, v4_2_3
+==================
+
+   ## changes
+   ## changes
+     - fixed bug of nhvu, phvu, ndhvta, nhvta, nhvtb, phvta, phvtb & ndhvt at extlay==1
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE Version J-2014.09 64-BIT"
+
+
+
+2016-03-11, v4_2_2
+==================
+
+   ## changes
+   ## changes
+     - fixed bug of qnv5 & qpv5 models
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE Version J-2014.09 64-BIT"
+
+
+
+2016-02-05, v4_2_1
+==================
+
+   ## changes
+   ## changes
+     - corrected OCC of phvu
+     - updated OCC of nhvta, nhvtb, ndhvta, ndhvt, nhvu, nhsj1_* & dfwnsj1_*
+     - added corner variation for tc1 of rpp1k1* & corrected delta width
+     - introduced 100% MC correlation for cgdo/cgso & cgdl/cgsl in ne, pe, ne5 & pe5
+     - updated self-heating capacitance (improved asccuracy) for nhvta, nhvtb, nhvu,
+       nhsj1_7, nhsj1_10, nhsj1_16c & phsj1_16c
+     - corrected bv of parasitic diode in nmva 
+
+   ## Tool Versions used for Quality Assurance
+     - HSPICE, version:"HSPICE Version J-2014.09 64-BIT"
+
+
+
+2015-09-29, v4_1_4
+==================
+
+   ## changes
+   ## changes
+     - fixed bug which leads to too high capacitance of diodes dnp7, dpp6, dpp7,
+       dfwdn5, dfwdnt, dfwdnu, dfwdpta, dfwdptb, dfwdpu, dza, dzati & dzbti
+   
+   
+   
+   2015-08-14, 4.1.3
+   =================
+   ## changes 
+     - added flicker noise parameter for rdp & rdp5
+     - updated dfwdnt & dfwdnu (extension for special TLP purpose)
+     - corrected gate capacitance characteristic of nd5
+   
+   
+   
+   2015-06-26, 4.1.2
+   ================= 
+   ## changes
+     - updated temperature dependency of ne5 & pe5
+     - prevented pe & nn from producing warnings
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "ELDO 15.1 (64 bits)  (v7.12_1.1)"
+     - HSPICE_VERSION  = "HSPICE Version J-2014.09 64-BIT"	
+     - SPECTRE_VERSION = "14.1.0.303.isr3 64bit -- 16 Dec 2014"
+     - TSPICE_VERSION  = "T-Spice 16.24"	
+   
+   
+   
+   2015-06-05, 4.1.1
+   =================
+   ## changes
+     - updated D/B & S/B didoe parameter of nd5
+     - updated nhvta, nhvtb, phvta, phvtb & phvu to prevent HSpice warning
+     - fixed issue - made RR variants of dfwdpta, dfwdptb & dfwdpu
+       available via dio_rr.{lib,scs}
+     - added new dio-type switch BSIM4 also to MOS5 core
+     - optimized qnv5 & qpv5
+     - added matching modelling for nhvtb & phvtb
+     - fixed dzbti (3 terminals now)
+     - optimized convergence of phvu
+     - updated dn5, dn, dnw5, dnw, dp5, dp & drxw for reasonable Ifwd
+       - but forward operation is still forbidden
+     - prevented pe, pe_5, peti, pe5, pe5_5, pe5ti & nn5 from producing warnings
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "ELDO 15.1 (64 bits)  (v7.12_1.1)"
+     - HSPICE_VERSION  = "HSPICE Version J-2014.09 64-BIT"	
+     - SPECTRE_VERSION = "14.1.0.303.isr3 64bit -- 16 Dec 2014"
+     - TSPICE_VERSION  = "T-Spice 16.24"	
+   
+   
+   
+    2015-04-23, 4.0.1
+   =================
+   ## changes
+     - merged XT018A with XT018
+       - added & updated cmmh4l, cmmh5l, cmmh6l
+       - added & updated dfwdn5, dfwdnt, dfwdnu, dfwdpta, dfwdptb, dfwdpu, dnpa,
+         dnpati, drxw, dza, dzati & dzbti
+       - added & updated nel, pel, pel_5 & nd5
+       - added & updated nhvta, nhvtb, nhvu, phvta, phvtb, phvu, ndhvt & ndhvta
+       - added & updated 200V IGBT nisj1_16
+       - added & updated qnv5 & qpv5 (incl. RF parameter)
+       - added & updated rxw2ti
+     - added pe_5, pe5_5
+     - updated pfuse in accordance to spec.
+     - updated matching of qnv5, qpv5, rxw2ti, cmmh3t, cmmh4t, cmmh5t, cmmh6t,
+       cmmh4l, cmmh5l & cmmh6l
+     - added reverse recovery modeling to dfwdn5, dfwdnt, dfwdnu,
+       dfwnsj1_{7,10,16c}, dfwdpta, dfwdptb, dfwdpu & dfwpsj1_{7,10,16c}
+     - updated noise of qpv{a,b,c} & qpv{a5,b5,c5}
+     - updated ne, pe, ne5, pe5, peti, pe5ti, nn & nn5
+       - type of D/B & S/B diodes in BSIM4 models is switchable between
+         1.LEVEL1:  - include param.{lib,scs} (default)
+                    - fast simulation time
+                    - good convergence
+                    - standard leakage accuracy
+         2.JUNCAP2: include param_bsim4_juncap.{lib,scs} instead of param.{lib,scs}
+                    - slow simulation time
+                    - convergence weakness when using lots of instances
+                    - very good leakage accuracy
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "ELDO 15.1 (64 bits)  (v7.12_1.1)"
+     - HSPICE_VERSION  = "HSPICE Version J-2014.09 64-BIT"	
+     - SPECTRE_VERSION = "14.1.0.303.isr3 64bit -- 16 Dec 2014"
+     - TSPICE_VERSION  = "T-Spice 16.24"	
+   
+    
+   
+   2015-03-13, 3.0.2
+   ================= 
+   ## changes
+     - updated tf of qpv{a,b,c} & qpv{a,b,c}5
+     - updated dn, dp, dn5, dp5, dnw, dnw5, dhw2a, dhw2, dhw3, dpp6 & dfwnsj1_{7,10,16c}
+     - updated rsh of rpp1 & rpp1_3
+     - updated ne, pe, peti, nn, ne5, pe5, pe5ti & nn5
+     - updated nmva & pmva
+     - updated nhsj1_{7,10,16c} & phsj1_{7,10,16c}
+     - added ds5, dpp7 & dnp7
+     - added rpp1k1a & rpp1k1a_3
+     - added flicker noise parameter to resistors
+     - added qpv{e,f,g} & qpv{e,f,g}5
+     - removed rnwhvp & rnw5hvp
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "14.1 (64 bits) (v7.11_1.1) Linux"
+     - HSPICE_VERSION  = "J-2014.09 64-BIT Linux"
+     - SPECTRE_VERSION = "14.1.0.303.isr3 64bit Linux"
+   
+   
+   
+   2014-08-08, 2.2.1
+   ================= 
+   ## changes
+     - fixed bug of parameter variation in corner models of ne5, pe5, nn & nn5
+   
+   
+   
+   2014-02-14, 2.1.1
+   ================= 
+   ## changes
+     - fitted high temperature leakage of nn & nn5
+     - deactivated irrelevant model warnings of nmva & pmva and
+       updated cgso/cgdo/loverld -> convergence optimization
+     - updated TC1 of rpp1 & rpp1_3 and TC2 of rpp1k1 & rpp1k1_3
+     - updated bulk voltage coefficient of rpp1_3 & rpp1k1_3
+     - leakage current variation (corners) for dfwnsj1_7, dfwnsj1_10, dfwnsj1_16c & dfwdpa
+     - updated nhsj1_{7,10,16c} & phsj1_{7,10,16c} in accordance to PDS
+     - updated dhw* -> fixed Spectre divergence of high temp Ileak
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "Eldo 12.2 (64 bits)  (v7.8_1.1) linux"		
+     - HSPICE_VERSION  = "H-2013.03 32-BIT  linux" 	
+     - SPECTRE_VERSION = "12.1.0.295.isr1 64bit -- 15 Nov 2012"
+   
+   
+   
+   2013-12-20, 2.0.1
+   ================= 
+   ## changes
+     - added matching for qpva, qpvb, qpvc, qpva5, qpvb5 & qpvc5
+     - added nn5 (BSIM4v4.70)
+     - updated nn
+     - updated noise parameter for nn & nn5
+     - updated nmva & pmva (HiSIM_HV 2.0.1)
+     - updated dnw & dnw5
+     - renamed & updated SJ HV-MOS (HiSIM_HV 1.2.3)
+       - nhv1a -> nhsj1_7
+       - nhv1b -> nhsj1_10
+       - nhv1c -> nhsj1_16c
+       - phv1a -> phsj1_7
+       - phv1b -> phsj1_10
+       - phv1c -> phsj1_16c
+     - updated ne, pe & peti from BSIM3v3.24 to BSIM3v3.30
+     - added cdmm4, cdmm4t, ctmm5 & ctmm5t
+     - updated all MIM & fringe caps (minor parameter changes)
+     - renamed & updated SJ forward diodes
+       - dfwdn1a -> dfwnsj1_7
+       - dfwdn1b -> dfwnsj1_10
+       - dfwdn1c -> dfwnsj1_16c
+     - renamed & updated buried diodes
+       - dnbura -> dhw2a
+       - dnburb -> dhw2
+       - dnburc -> dhw3
+     - added silicide block edge resistances to the subcircuits of
+       rdn, rdp, rnp1, rnp1_3, rpp1, rpp1_3, rpp1k1, rpp1k1_3, rdn5 & rdp5
+     - renamed & updated well resistors (with HVPWELL)
+       - rnw  -> rnwhvp
+       - rnw5 -> rnw5hvp
+     - added new rnw & rnw5 (without HVPWELL)
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "Eldo 12.2 (64 bits)  (v7.8_1.1) linux"		
+     - HSPICE_VERSION  = "H-2013.03 32-BIT  linux" 	
+     - SPECTRE_VERSION = "12.1.0.295.isr1 64bit -- 15 Nov 2012"
+   
+   
+   
+   2013-06-28, 1.1.1
+   ================= 
+   ## changes
+     - updated ne & rpp1s in accordance to PDS
+     - added csf3a, csf4a, csf5a, csft4a, csft5a & csft6a
+   
+   ## Tool Versions used for Quality Assurance
+     - ELDO_VERSION    = "Eldo 12.2 (64 bits)  (v7.8_1.1) linux"		
+     - HSPICE_VERSION  = "H-2013.03 32-BIT  linux" 	
+     - SPECTRE_VERSION = "12.1.0.295.isr1 64bit -- 15 Nov 2012"
+   
+   
+   
+   2013-05-27, 1.0.5
+   ================= 
+   ## changes
+     - updated tc1 of csf3p in accordance to PDS
+     - fixed convergence issue (only Spectre) of nhv1* & phv1*
+       by adjusting parameters
+   
+   
+   
+   2013-03-01, 1.0.4
+   =================
+   ## changes
+     - added initial set of occ models
+     - updated noise parameter of ne5
+     - fixed corner variation bug in ne5, pe5, pe5ti & nn
+    
+   
+   
+   2013-01-24, 1.0.3
+   =================
+   ## changes
+     - removed rnp1h & rnp1h_3 from mos5 lib
+     - fixed convergence issue (only Spectre) of nhv1* & phv1*
+       by deactivating selfheating and adjusting parameters
+   
+   
+   
+   2012-10-26, 1.0.2
+   ================= 
+   ## changes
+     - fixed bug of matching parameters for ne5 & nn
+   
+   
+   
+   2012-09-28, 1.0.1
+   =================
+   ## changes
+     - initial model set
+
+
+

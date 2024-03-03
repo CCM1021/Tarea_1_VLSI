@@ -1,0 +1,114 @@
+/* 
+Verilog-A model for X-FAB rectifier diodes
+It considers diode soft recovery.
+*/
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+`define SPICE_TNOM 27.0
+`define SPICE_GMIN 1e-15;
+
+module dfwdn1(anode,cathode);
+
+inout anode, cathode;
+electrical anode, cathode, internal, t1, t2, gnd;
+ground gnd;
+
+branch(t1, t2) qm;
+branch(t1, gnd) term_t1;
+branch(t2, gnd) term_t2;
+parameter real m_     = 1.0     from (0:inf];               //device multiplier []
+parameter real area   = 1.0e-12 from [0:inf];               //device area [m2]
+parameter real peri   = 4.0e-6  from [0:inf];               //device perimeter [m] 
+parameter real js     = 1e-15   from [1e-18:inf];           //area leakage current [A/m2]
+parameter real jsw    = 0       from [0:inf];               //sidewall leakage current [A/m]
+parameter real ik     = 0       from [0:inf];               //knee current [A/m2]
+parameter real nd     = 1       from (0:inf];               //ideality factor [-]
+parameter real tau    = 1e-5    from [0:inf];               //carrier lifetime [s]
+parameter real tm     = 5e-6    from [0:inf];               //transit time [s]
+parameter real rs     = 10n     from [0:inf];               //series resistance [Ohm m2]
+parameter real cj     = 1.0e-15 from [1.0e-15:inf];         //area junction capacitance [F/m2]
+parameter real mj     = 0.5     from [0:inf];               //area junction grading coefficient [-]
+parameter real pb     = 0.8     from (0:inf];               //area junction potential [V]
+parameter real cjsw   = 0.0     from [0:inf];               //sidewall junction capacitance [F/m]
+parameter real mjsw   = 0.5     from [0:inf];               //sidewall junction grading coefficient [-]
+parameter real pbsw   = 0.8     from (0:inf];               //sidewall junction potential [V]
+
+real vd;
+real id0, id1, id;
+real kinj;
+real qe;
+real qdio, qdio_a, qdio_p;
+real egnom, egt;
+real vtnom, vtt;
+real tfac, tdif;
+real pbt, pbswt;
+real cjt, cjswt;
+real tnom, temp;
+ 
+analog begin
+  tnom  = `SPICE_TNOM+`P_CELSIUS0;
+  temp  = $temperature;
+  tfac  = temp/tnom;
+  tdif  = temp-tnom;
+  vtt   = $vt;
+  vtnom = $vt(tnom);
+  egnom = 1.16-7.02e-4*pow(tnom,2)/(tnom+1108);
+  egt   = 1.16-7.02e-4*pow(temp,2)/(temp+1108);
+  pbt   = pb*tfac-vtt*(3*ln(tfac)+egnom/vtnom-egt/vtt);
+  pbswt = pbsw*tfac-vtt*(3*ln(tfac)+egnom/vtnom-egt/vtt);
+  cjt   = cj*(1+mj*(4.0e-4*tdif-pbt/pb+1));
+  cjswt = cjsw*(1+mjsw*(4.0e-4*tdif-pbswt/pbsw+1));
+  
+  vd    = V(anode)-V(internal);
+  
+  //basic diode IV characteristic
+  id0 = m_*(area*js+peri*jsw)*(limexp(vd/(vtt*nd))-1.0);
+  if (vd<0) begin
+    if (vd <= -5*nd*vtt) begin
+      id1 = -m_*(area*js + peri*jsw);
+    end
+    else begin
+      id1 = id0;
+    end
+  end	
+  else begin //forward current and charge storage
+    //forward knee current
+    if (ik>0) begin
+      kinj = sqrt((m_*area*ik)/(m_*area*ik+id0));
+    end
+    else begin
+      kinj = 1;
+    end
+    id1=kinj*id0;
+  end 
+    
+  //charge analysis
+//  qe=tau*id1/(m_*area);
+  qe=tau*id1;
+  //diode current
+  id = qe/tm-V(qm)/tm;
+  //solve differential equation
+  V(qm) : ddt(V(qm)) == qe/tm - V(qm)/tm - V(qm)/tau;
+  
+  
+  //CV like DCAP=2 approach in HSPICE     
+  if (vd<0) begin
+    qdio_a = area*cjt*pbt*(1-pow((1-vd/pbt),(1-mj)))/(1-mj);
+    qdio_p = peri*cjswt*pbswt*(1-pow((1-vd/pbswt),(1-mjsw)))/(1-mjsw);
+  end
+  else begin
+    qdio_a = area*vd*cjt*(1+mj*vd/(2*pbt));
+    qdio_p = peri*vd*cjswt*(1+mjsw*vd/(2*pbswt));
+  end
+  qdio = m_*(qdio_a + qdio_p);
+        
+  I(anode, internal)   <+ ddt(qdio);
+  I(anode, internal)   <+ id;
+  V(internal, cathode) <+ I(internal, cathode) * (rs/(m_*area));  
+  I(term_t1)           <+ V(term_t1)/1e15;
+  I(term_t2)           <+ V(term_t2)/1e15;
+end
+
+endmodule

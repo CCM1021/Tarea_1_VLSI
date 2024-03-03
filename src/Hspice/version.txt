@@ -1,0 +1,1 @@
+2023/07/07; external/releases/v12.1.3/models/hspice; r1402

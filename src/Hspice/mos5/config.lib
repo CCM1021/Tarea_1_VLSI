@@ -1,0 +1,27 @@
+* ----------------------------------------------------------------------
+************* XFAB ********** MODEL-LIBRARY ****************************
+* ----------------------------------------------------------------------
+* Simulator : hspice
+* ----------------------------------------------------------------------
+* 	This is a configuration file to control the behaviour of the 
+*	model library. All possible global options can be set here.
+*
+*
+.lib default
+* set scoping rules for netlisting parameters in accordance to all other simulators
+.option parhier=local
+* ----------------------------------------------------------------------
+* 	switch junction diode type of BSIM4 MOS models (LEVEL1|JUNCAP2) 
+*	 __bsim4_diomod=0	use SPICE-LEVEL1 model 
+* 	 __bsim4_diomod=1	use JUNCAP2 model 
+*
+.param __bsim4_diomod=0
+* ----------------------------------------------------------------------
+* 	switch level of short-channel-leakage accuracy for native NMOS models 
+*	 __nn_accuracy=0	no additional leakage modeling 
+*	 __nn_accuracy=1	JFET leakage modeling (default)	--> tradeoff btw. accuracy & convergence
+* 	 __nn_accuracy=2	current source leakage modeling --> high accuracy
+*
+.param __nn_accuracy=1
+
+.endl

@@ -1,0 +1,31 @@
+* ----------------------------------------------------------------------\
+*    Generated with Occ Generator
+* ----------------------------------------------------------------------\
+.lib error_only_unlimited
+.hdl "./xt018.va"
+.param errFileName = str("./occ.err")
+.param maxEv = 25
+.param maxEv_flg = 0
+XRmOcceErr rmOccErr errFileName=str(errFileName)
+.endl
+.lib multi_range_unlimited
+.hdl "./xt018_mr.va"
+.param errFileName = str("./occ.err")
+.param maxEv = 25
+.param maxEv_flg = 0
+XRmOcceErr rmOccErr errFileName=str(errFileName)
+.endl
+.lib error_only_limited
+.hdl "./xt018.va"
+.param errFileName = str("./occ.err")
+.param maxEv = 25
+.param maxEv_flg = 1
+XRmOcceErr rmOccErr errFileName=str(errFileName) maxEv_flg = 1
+.endl
+.lib multi_range_limited
+.hdl "./xt018_mr.va"
+.param errFileName = str("./occ.err")
+.param maxEv = 25
+.param maxEv_flg = 1
+XRmOcceErr rmOccErr errFileName=str(errFileName) maxEv_flg = 1
+.endl
