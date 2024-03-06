@@ -11,18 +11,18 @@
 *----------------------------------------------------------------------
 * Subcircuits
 *----------------------------------------------------------------------
-.subckt inv a y WN=220n WP=440n
+.subckt inv a y WN=360n WP=720n
 xm0 y a gnd gnd ne W='WN' L=180n
-+ as=-1 ad=-1 ps=-1 + pd=-1 nrs=-1 nrd=-1 m='(1*1)' par1='(1*1)' xf_subext=0
++ as=-1 ad=-1 ps=-1 pd=-1 nrs=-1 nrd=-1 m='(1*1)' par1='(1*1)' xf_subext=0
 xm1 y a vdd vdd pe W='WP' L=180n
-+ as=-1 ad=-1 ps=-1 + pd=-1 nrs=-1 nrd=-1 m='(1*1)' par1='(1*1)' xf_subext=0
++ as=-1 ad=-1 ps=-1 pd=-1 nrs=-1 nrd=-1 m='(1*1)' par1='(1*1)' xf_subext=0
 .ends
 *----------------------------------------------------------------------
 * Simulation netlist
 *----------------------------------------------------------------------
 Vdd vdd gnd dc=1.8 power=0
 Vin a gnd dc=0 pulse ( 0 1.8 0 100p 100p 2n 4.2n )
-X1 a b inv * shape input waveform
+X1 a b inv
 X2 b c inv M='H'
 X3 c d inv M='H**2'
 X4 d e inv M='H**3'
