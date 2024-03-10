@@ -3,16 +3,16 @@
 
 .OPTION POST
 
-M1 Vd Vg Vs 0 Nch L=220n W=180n
+M1 Vd Vg Vs 0 Pch L=220n W=180n
 
 *** MOS Model
-.model Nch NMOS level=1
+.model Pch PMOS level=1
 
 *** voltage
 Vds Vd Vs
 Vgs Vg Vs
 
-.DC Vds 0 7 0.1 SWEEP Vgs 0 5 1
+.DC Vds -1.8 0 0.05 SWEEP Vgs -1.8 0 0.3
 
 .probe dc i(M1)
 
