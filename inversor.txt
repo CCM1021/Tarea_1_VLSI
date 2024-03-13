@@ -1,5 +1,5 @@
 .temp 25
-.lib '/mnt/vol_NFS_rh003/Est_VLSI_I_2024/Cerdas_Mora_I_2024_vlsi/Tutorial_1/Hspice/lp5mos/xt018.lib' tm
+.lib '/mnt/vol_NFS_rh003/Est_VLSI_I_2024/Cerdas_Mora_I_2024_vlsi/Tutorial_1/Hspice/lp5mos/xt018.lib' wz
 .lib '/mnt/vol_NFS_rh003/Est_VLSI_I_2024/Cerdas_Mora_I_2024_vlsi/Tutorial_1/Hspice/lp5mos/param.lib' 3s
 .lib '/mnt/vol_NFS_rh003/Est_VLSI_I_2024/Cerdas_Mora_I_2024_vlsi/Tutorial_1/Hspice/lp5mos/config.lib' default
 
@@ -17,13 +17,13 @@ xm1 out net12 net10 net10 pe w=440.0n l=180.0n as=2.112e-13 ad =2.112e-13 ps =1.
 
 .tran 10p 10n start=0
 
-.plot v(out) v(net12)
+.probe v(out) v(net12)
 
-.measure trise * rise time
-+ TRIG v(v2) VAL='0.2*v1' RISE=1
-+ TARG v(v2) VAL='0.8*v1' RISE=1
-.measure tfall * fall time
-+ TRIG v(v2) VAL='0.8*v1' FALL=1
-+ TARG v(v2) VAL='0.2*v1' FALL=1
+.measure trise 
++ TRIG v(out) VAL=0.36 RISE=1
++ TARG v(out) VAL=1.44 RISE=1
+.measure tfall 
++ TRIG v(out) VAL=1.44 FALL=1
++ TARG v(out) VAL=0.36 FALL=1
 
 .end

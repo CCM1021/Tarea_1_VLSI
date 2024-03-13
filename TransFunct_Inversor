@@ -23,5 +23,5 @@ Vgnd gnd! 0 0v
 VIN A 0
 
 .DC VIN 0 1.8 0.01
+.end
 
-.END
