@@ -78,8 +78,6 @@ La siguiente Tabla resume los datos de la figura anterior. Esta tabla correspond
 
 
 
-
-</style>
 <table class="tg">
 <thead>
   <tr>
