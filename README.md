@@ -74,13 +74,13 @@ $C_{gd}=0.17μm+0.33fF/μm=0.0561fF$
 
 $C_{gs}=W_{dib}*L_{dib}*C_{ox}+W_{dib}*C_{ov}$
 
-$C_gs=0.22μm*0.17μm*8.46fF/(μm^2 )+0.22μm*0.33fF/μm=0.389fF$
+$C_{gs}=0.22μm*0.17μm*8.46fF/(μm^2 )+0.22μm*0.33fF/μm=0.389fF$
 
 $C_{db}=C_{gs}=0,389fF=C_{sb}$
 
-Constante de tiempo `τ`
+Constante de tiempo $\tau$
 
-$τ=3*R*C=3*13.39kΩ*0.389fF=15.63 ps$
+$\tau=3*R*C=3*13.39kΩ*0.389fF=15.63 ps$
 
 
 Capacitancia para PMOS:
@@ -96,9 +96,9 @@ $C_{gs}=0.22μm*0.17μm*8.91fF/(μm^2 )+0.22μm*0.32fF/μm=0.404fF$
 
 $C_{db}=C_{gs}=0,404fF=C_{sb}$
 
-Constante de tiempo `τ`
+Constante de tiempo $\tau$
 
-$τ=3*R*C=3*38117.66*0.404fF=46.19 ps$
+$\tau=3*R*C=3*38117.66*0.404fF=46.19 ps$
 
 
 
