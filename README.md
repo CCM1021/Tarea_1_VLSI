@@ -15,7 +15,10 @@ La importancia de lograr caracterizar mediante la simulación todos los valores 
 
 ## 3. Datos Relevantes
 
-
+- La relación de los transistores `PMOS` y `NMOS` es de 2:1.
+- Las constantes de retraso $\tau$ calculadas en esta tarea corresponden a la medida mínima de retraso para cualquier compuerta.
+- Relacionado con lo anterior el inversor es la compuerta más simple que se puede encontrar por ende las demás relaciones de capacitancia y resistencia en otras compuertas están normalizadas con este valor.
+- Para el diagrama de esquinas se debe de analizar que el caso donde ambos transistores son rápidos estarán más cerca de el punto de origen.
 
 ## 4. Solución
 ### Parte 1
@@ -164,7 +167,7 @@ La siguiente Tabla resume los datos de la figura anterior. Esta tabla correspond
 </tbody>
 </table>
 
-
+En este caso se debe de observar que cada vez que el transistor aumenta su velocidad el tiempo se reduce, es por esto que los puntos de la relación de los transistores `FF`, están más cerca de el origen del diagrama y de forma inversa el punto `SS`.
 
 #### B) Relación PMOS/NMOS
 
