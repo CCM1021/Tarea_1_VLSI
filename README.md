@@ -22,7 +22,7 @@ La importancia de lograr caracterizar mediante la simulación todos los valores 
 
 #### A) Estimación de la Resistencia Efectiva
 
-La ecuación (4.16) es igual a $R_{step}\approx \frac{V_{DD}}{(2I_{dsat} )}$ y la ecuación `(4.19)` es igual a $R=\frac{V_{DD}}{(I_H+I_L )}$. El fenómeno se debe a que el transistor está suficiente saturado y cumple que $V_{dsat}<V_{DD}/2$, entonces el transistor permanecerá en la región de saturación a lo largo de esta transición y la corriente es aproximadamente constante a $I_{dsat}$ [1]. Esta aplicación se puede utilizar para determinar el valor de la corriente constante que puede generar el transistor o su valor de resistencia para impulsos de escalón.
+La ecuación (4.16) es igual a $R_{step}\approx \frac{V_{DD}}{(2I_{dsat})}$ y la ecuación `(4.19)` es igual a $R=\frac{V_{DD}}{(I_H+I_L)}$. El fenómeno se debe a que el transistor está suficiente saturado y cumple que $V_{dsat}<V_{DD}/2$, entonces el transistor permanecerá en la región de saturación a lo largo de esta transición y la corriente es aproximadamente constante a $I_{dsat}$ [1]. Esta aplicación se puede utilizar para determinar el valor de la corriente constante que puede generar el transistor o su valor de resistencia para impulsos de escalón.
 
 
 #### B) Estimación de la Capacitancia Equivalente
