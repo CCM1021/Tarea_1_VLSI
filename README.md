@@ -22,10 +22,11 @@ La importancia de lograr caracterizar mediante la simulación todos los valores 
 
 #### A) Estimación de la Resistencia Efectiva
 
+La ecuación (4.16) es igual a $R_{step}\approx \frac{V_{DD}}{(2I_{dsat} )}$ y la ecuación `(4.19)` es igual a $R=\frac{V_{DD}}{(I_H+I_L )}$. El fenómeno se debe a que el transistor está suficiente saturado y cumple que $V_{dsat}<V_{DD}/2$, entonces el transistor permanecerá en la región de saturación a lo largo de esta transición y la corriente es aproximadamente constante a $I_{dsat}$ [1]. Esta aplicación se puede utilizar para determinar el valor de la corriente constante que puede generar el transistor o su valor de resistencia para impulsos de escalón.
+
 
 #### B) Estimación de la Capacitancia Equivalente
-
-
+En esta sección se utilizó las tablas de las capacitancias equivalentes [1] que tiene un transistor de tamaño mínimo. Además se supuso que las capacitancia de difusión son iguales a las capacitancias de compuerta.
 ### Parte 2
 
 #### A) Diseño del inversor
@@ -40,19 +41,66 @@ En lo que respecta a la simulación de la relación de anchos entre transistores
 
 Para el cálculo de resistencias efectivas, se utilizó la ecuación (8.7) que se encuentra en [1].
 
-
-
-
-
-
-
 ## 5. Resultados
 ### Parte 1
 
 #### A) Estimación de la Resistencia Efectiva
 
+Al seguir el enunciado se calculó la resistencia efectiva del canal con la ecuación `(4.19)` y al simplificar, con $I_{eff}=\frac{(I_L+I_H)}{2}$, se obtuvo lo siguiente:
+
+$R=\frac{V_{DD}}{(2I_{eff})}=\frac{(\frac{V_{DD}}{2(I_L+I_H )})}{2}=\frac{V_{DD}}{(I_L+I_H)}$
+
+Donde para `NMOS` tenemos:
+$R_{NMOS}=\frac{1.8V}{(465μA/μm+3pA/μm)}=3938.73 Ω*μm$
+
+Para `PMOS` tenemos el mismo procedimiento con el valor de corrientes que difiere:
+
+$R_{PMOS}=\frac{1.8V}{(170μA/μm+3pA/μm)}=10588.24 Ω*μm$
+
+Utilizando las resistencias por micrómetro, se obtienen las siguientes resistencias efectivas para `NMOS` y `PMOS` respectivamente:
+
+- $R_{NMOS} = 13391.68$ $Ω$
+- $R_{PMOS} = 38117.66$ $Ω$
+
+
 
 #### B) Estimación de la Capacitancia Equivalente
+
+Capacitancia para NMOS:
+
+$C_{gd}=W_{eff}*C_{ov}$
+$C_{gd}=0.17μm+0.33fF/μm=0.0561fF$
+
+
+$C_{gs}=W_{dib}*L_{dib}*C_{ox}+W_{dib}*C_{ov}$
+
+$C_gs=0.22μm*0.17μm*8.46fF/(μm^2 )+0.22μm*0.33fF/μm=0.389fF$
+
+$C_{db}=C_{gs}=0,389fF=C_{sb}$
+
+Constante de tiempo `τ`
+
+$τ=3*R*C=3*13.39kΩ*0.389fF=15.63 ps$
+
+
+Capacitancia para PMOS:
+	
+	
+$C_{gd}=μ_{eff}*C_{ov}$
+$C_{gd}=0.25μm+0.32fF/μm=0.08fF$
+
+
+$C_{gs}=W_{dib}*L_{dib}*C_{ox}+W_{dib}*C_{ov}$
+
+$C_{gs}=0.22μm*0.17μm*8.91fF/(μm^2 )+0.22μm*0.32fF/μm=0.404fF$
+
+$C_{db}=C_{gs}=0,404fF=C_{sb}$
+
+Constante de tiempo `τ`
+
+$τ=3*R*C=3*38117.66*0.404fF=46.19 ps$
+
+
 
 
 
@@ -72,7 +120,8 @@ Para el transistor `NMOS` se obtuvo la siguiente curva característica.
 
 
 Se midió las relaciones entre `PMOS` y `NMOS` donde se obtuvo el siguiente `Diagrama de Esquinas de Variabilidad.`
-![image](https://hackmd.io/_uploads/H1jd6fgA6.png)
+![image](https://hackmd.io/_uploads/Byyq7V-A6.png)
+
 
 La siguiente Tabla resume los datos de la figura anterior. Esta tabla corresponde a los tiempos de cada transistor dentro del inversor al variar la relación de los transistores.
 
@@ -145,9 +194,12 @@ Las resistencias efectivas simuladas corresponden a:
 
 ### Parte 1
 #### A) Estimación de la Resistencia Efectiva
-
+Se evaluó con el profesor el cálculo correcto de los valores de las constantes de tiempo, además de que a la hora de encontrar los valores mediante simulación son congruentes.
 
 #### B) Estimación de la Capacitancia Equivalente
+
+De la misma forma que para la resistencia efectiva, se logró obtener un valor razonable, de acuerdo a la teoría presentada en [1]. Seguidamente se obtuvo el valor de $\tau$, que pertenece al retardo de la compuerta, en relación a la capacitancia equivalente multiplicada por la resistencia efectiva. También fue un valor congruente con los obtenidos en la simulación.
+
 
 ### Parte 2
 
